@@ -1,4 +1,4 @@
 gallery
 =======
 
-Some code snipets here and there.
+Some code snippets here and there.
