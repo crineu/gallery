@@ -1,4 +1,4 @@
 gallery
 =======
 
-Useful(?) and beautiful(?) pieces of well-designed(?) code. Or not.
+Some code snipets here and there.
