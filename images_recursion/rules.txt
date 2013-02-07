@@ -1,16 +1,5 @@
-1. Develop a set of classes for recursively scanning a directory, its subdirectories and included 
-image files (GIF and JPEG). The sizes, dimensions and compressions rates are to be computed 
-and stored (in memory) for all directories and picture files. For directories it must be possible 
-to compute the sum of the file sizes in the directory and its subdirectories, the average image 
-dimensions and average compression rates.
-The information about the directories and files must be available after a single scan of the 
-directory structure, without scanning the file system or accessing the files each time the 
-information is needed.
-It should be easy to use the resulting classes for the development of a directory analysis tool, 
-which uses a tree to visualize the file hierarchy, allows the user to navigate through it and 
-shows the information about the files and directories he selects. But the development of 
-such a tool is not part of this test.
-The  information about given directories and files should be printed to the console by a 
-simple test program as shown in the appendix (see Exercise: Java “Image” Processing). The 
-appendix also contains a test class to visualize the possibility to scan image files
+You have to recursively scan a folder, its subfolders and included image files (GIF and PFN).
+The sizes and dimensions need to be computed and stored in memory for all of them. Directories holds the sum and average of the file sizes in the directory and its subdirectories.
+
+The information must be available after a single scan.
 
