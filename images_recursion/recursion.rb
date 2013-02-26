@@ -9,38 +9,26 @@ def size(image_filename)
 	end
 end
 
-# struct FTW!
-class Image
-	attr_accessor :height, :width
-	def initialize (array) 
-		@height, @width = array.first, array.last
-	end
-	def to_s
-		"#{@height}x#{@width}"
-	end
-end
-
 result = []
-folders = ['.'] + Dir.glob("**/*/")
+folders = ['.'] + Dir.glob("**/")
 folders.each do |folder|
 	heights, widths = [], []
 	files = Dir.entries(folder)
 	files.reject! { |file| not ['.png', '.gif'].include? File.extname(file)  }
 	files.map! { |file| folder + file } unless folder == '.'
 	files.each do |filename|
-		img = Image.new(size(filename))
-		heights << img.height
-		widths  << img.width
+		size = size(filename)
+		heights << size.first
+		widths  << size.last
 	end
 	
 	unless heights.empty?
 		total_h = heights.reduce(:+)
 		total_w = widths.reduce(:+)
-		puts "*********"
-		puts " Information for folder " + folder
-		puts " Number of images: " + heights.size.to_s
-		puts " Total / average height:   " + total_h.to_s + " / " + (total_h.to_f / heights.size).to_s
-		puts " Total / average width:    " + total_w.to_s + " / " + (total_w.to_f / widths.size).to_s
+		avg_h = total_h.to_f / heights.size
+		avg_w = total_w.to_f / widths.size
+		puts " Folder " + folder + " with this number of images: " + heights.size.to_s
+		puts " Height: #{total_h}px (#{avg_h}) \tWidth: #{total_w}px (#{avg_w})"
 		puts ""
 	end
 end
