@@ -1,40 +1,55 @@
-class Shuffler
-	def initialize card
-		@card = card
-		@results = Hash.new { |hash, key| hash[key] = 0 }
-	end
-
+class Array
 	def naive_shuffle
-		card = @card.dup
-		card.size.times do |i|
-			r = rand(card.size)
-			card[i], card[r] = card[r], card[i]
+		card = self.dup
+		card.size.times do |iterator|
+			random = rand(card.size)
+			card[iterator], card[random] = card[random], card[iterator]
 		end
 		card
 	end
 
 	def kfy_shuffle		# Knuth-Fisher-Yates shuffle algorithm.
-		card = @card.dup
-		(card.size - 1).downto 1 do |i|
-			r = rand(i + 1)
-			card[i], card[r] = card[r], card[i]
+		card = self.dup
+		(card.size - 1).downto 1 do |iterator|
+			random = rand(iterator + 1)
+			card[iterator], card[random] = card[random], card[iterator]
 		end
 		card
 	end
+end
 
-	def analyze samples = 1_000
-		# samples.times { @results[@card.shuffle] += 1 }	# API shuffle
-		samples.times { @results[naive_shuffle] += 1 }		# naive shuffle
-		# samples.times { @results[kfy_shuffle] += 1 }		# KFY shuffle
-
-		puts "#{@card} shuffled #{samples} times."
-		puts "-------------"
-		@results.sort_by {|k, v| v}.each do |key, value|
-			puts "#{key} - #{"|" * (value * 400 / samples)} (#{value * 100 / samples})%"
-		end
+class Shuffler
+	def initialize card
+		@card = card
 	end
 
+	def analyze_naive samples
+		@results = Hash.new { |hash, key| hash[key] = 0 }
+		@samples = samples
+		@samples.times { @results[@card.naive_shuffle] += 1 }	# naive shuffle
+		print_results
+	end
+
+	def analyze_kfy samples
+		@results = Hash.new { |hash, key| hash[key] = 0 }
+		@samples = samples
+		# @samples.times { @results[@card.shuffle] += 1 }	# API shuffle
+		@samples.times { @results[@card.kfy_shuffle] += 1 }		# KFY shuffle
+		print_results
+	end
+
+	private
+	def print_results
+		@results.sort_by {|k, v| v}
+		puts "#{@card} shuffled #{@samples} times."
+		puts "-------------"
+		@results.each do |key, value|
+			puts "#{key} - #{"|" * (value * 400 / @samples)} (#{value * 100 / @samples})%"
+		end
+		puts "\n"
+	end
 end
 
 s = Shuffler.new [1, 2, 3]
-s.analyze 10_000
+s.analyze_naive 10_000
+s.analyze_kfy 10_000
