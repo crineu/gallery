@@ -40,13 +40,16 @@ class Shuffler
 
 	private
 	def print_results
-		@results.sort_by {|k, v| v}
+		max_value = @results.values.max
+		longest_bar = 40
+		
 		puts "#{@card} shuffled #{@samples} times."
 		puts "-------------"
-		@results.each do |key, value|
-			puts "#{key} - #{"|" * (value * 400 / @samples)} (#{value * 100 / @samples})%"
+		@results.sort_by {|k, v| v}.each do |key, value|
+			bar = "|" * (value * longest_bar / max_value)
+			puts "#{key} - #{bar} (#{value * 100 / @samples}%)"
 		end
-		puts "\n"
+		puts "\n" 
 	end
 end
 
