@@ -1,30 +1,36 @@
-# a byte_code = 97
-# z byte_code = 122
+FLOOR = 97 	# a byte_code = 97
+ROOF  = 122	# z byte_code = 122
 
 class String
-	def rot gap
+	def rot_encode gap
 		gap = (gap + 26) % 26
-		bytes = self.downcase.each_byte.map { |byte| cycle(gap, byte)}
+		bytes = self.downcase.each_byte.map { |byte| cycle(gap, byte) }
 		bytes.map { |b| b.chr }.join
 	end
 
-	def rot_decode gap
-		rot -gap
+	def rot gap
+		rot_encode -gap
+	end
+
+	def vigenere_encode key
+		key_iterator = key.chars.cycle
+		bytes = self.downcase.each_byte.map do |byte|
+			gap = (key_iterator.next.ord - FLOOR)
+			gap = (gap + 26) % 26
+			cycle(gap, byte)
+		end
+		bytes.map { |b| b.chr }.join
 	end
 
 	def cycle gap, byte
-		if byte > 96 and byte < 123
+		if byte >= FLOOR and byte <= ROOF 
 			byte += gap
-			byte = (byte % 123) + 97 if byte > 122
+			byte = (byte % 123) + 97 if byte > ROOF
 		end
 		byte
 	end
 end
 
-class Ghost
-	def self.vigenere key, sentence
-	end
-end
 
 codes = []
 File.readlines('chapter_codes').each do |line|
@@ -33,4 +39,4 @@ File.readlines('chapter_codes').each do |line|
 end
 
 puts codes[1]
-puts codes[1].rot_decode(2)
+puts codes[1].rot(2) # autopatch
