@@ -20,4 +20,18 @@ class GhostTest < Test::Unit::TestCase
 		end
 	end
 
+	def test_vigenere_encode
+		assert_equal "lxfo", "atta".vigenere_encode("lemo")
+	end
+
+	def test_vigenere_decode
+		assert_equal "what was", "Wbth lal".vigenere("autopatc")
+	end
+
+	def test_vigenere_encode_decode
+		['idj', 'osu', 'ksm', 'mmm', 'udh', 'zbz'].each do |key|
+			assert_equal "phrase", "phrase".vigenere_encode(key).vigenere(key)
+		end
+	end
+
 end
