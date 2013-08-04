@@ -16,6 +16,15 @@ class Array
 		end
 		card
 	end
+
+	def double_array_shuffle
+		card = self.dup
+		new_card = Array.new
+		while not card.empty?
+			new_card << card.delete_at(rand(card.size))
+		end
+		new_card
+	end
 end
 
 class Shuffler
@@ -38,6 +47,13 @@ class Shuffler
 		print_results
 	end
 
+	def analyze_shift samples
+		@results = Hash.new { |hash, key| hash[key] = 0 }
+		@samples = samples
+		@samples.times { @results[@card.double_array_shuffle] += 1 }		# KFY shuffle
+		print_results
+	end
+
 	private
 	def print_results
 		@results.sort_by {|k, v| v}
@@ -50,6 +66,8 @@ class Shuffler
 	end
 end
 
+n_samples = 100_000
 s = Shuffler.new [1, 2, 3]
-s.analyze_naive 10_000
-s.analyze_kfy 10_000
+s.analyze_naive n_samples
+s.analyze_kfy n_samples
+s.analyze_shift n_samples
