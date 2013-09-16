@@ -15,6 +15,10 @@ class String
 		rot_encode -gap
 	end
 
+	def print_all_rot
+		(0..32).each { |n| puts n.to_s + ' - ' +  self.rot(n) }
+	end
+
 	def vigenere_encode key
 		key_iterator = key.chars.cycle
 		bytes = self.downcase.each_byte.map do |byte|
@@ -50,8 +54,10 @@ File.readlines('chapter_codes').each do |line|
 	codes[chapter.to_i] = code
 end
 
-puts codes[1]
-puts codes[1].rot(2)
-puts 
-puts codes[2]
-puts codes[2].vigenere("autopatch")
+line = "\n"
+
+puts codes[1] + codes[1].rot(2) + line
+puts codes[2] + codes[2].vigenere("autopatch") + line
+puts codes[3] + codes[3].rot(17) + line
+
+# codes[3].print_all_rot
