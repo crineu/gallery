@@ -16,7 +16,7 @@ class String
 	end
 
 	def print_all_rot
-		(0..32).each { |n| puts n.to_s + ' - ' +  self.rot(n) }
+		(0..25).each { |n| puts n.to_s + ' - ' +  self.rot(n) }
 	end
 
 	def vigenere_encode key
@@ -59,5 +59,13 @@ line = "\n"
 puts codes[1] + codes[1].rot(2) + line
 puts codes[2] + codes[2].vigenere("autopatch") + line
 puts codes[3] + codes[3].rot(17) + line
+puts codes[4] + codes[4].vigenere("jelly") + line
+puts codes[5] + codes[5].rot(5) + line
+puts codes[6] + codes[6].vigenere("oroville") + line
+puts codes[7] + codes[7].rot(14) + line
+puts codes[8] + codes[8].vigenere("billcook") + line
+puts codes[9] + codes[9].rot(11) + line
+puts codes[10] + codes[10].vigenere("firmware") + line
 
-# codes[3].print_all_rot
+# codes[9].print_all_rot
+
