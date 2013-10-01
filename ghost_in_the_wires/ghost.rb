@@ -45,6 +45,10 @@ class String
 		end
 		byte
 	end
+
+	def decode_hex
+		self.split.map { |code| code.hex.chr }.join
+	end
 end
 
 
@@ -76,7 +80,13 @@ puts codes[17].rot(8) + "==> oakwood" + new_line
 puts codes[18].vigenere("oakwood") + "==> WCC3" + new_line
 puts codes[19].rot(21) + "==> alphadent" + new_line
 puts codes[20].vigenere("alphadent") + "==> bob burns" + new_line
+puts codes[21].decode_hex.rot(13) + "\n==> klingon" + new_line
+puts codes[22].vigenere("klingon") + "==> kat" + new_line
+puts codes[23].rot(9) + "==> boom box" + new_line
+puts codes[24].vigenere("boombox") + "==> kinko" + new_line
+puts codes[25].rot(6) + "==> ellensburg" + new_line
+puts codes[26].vigenere("ensburgell") + "==> The Rockford Files" + new_line
+puts codes[27].rot(0) + "==> " + new_line
 
 
-
-# codes[19].print_all_rot
+# codes[27].print_all_rot
