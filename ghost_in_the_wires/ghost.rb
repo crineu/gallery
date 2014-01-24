@@ -49,4 +49,8 @@ class String
 	def decode_hex
 		self.split.map { |code| code.hex.chr }.join
 	end
+
+	def decode_decimal
+		self.split.map { |code| code.to_i.chr }.join
+	end
 end
