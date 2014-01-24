@@ -34,4 +34,9 @@ class GhostTest < Test::Unit::TestCase
 		end
 	end
 
+	def test_morse
+		morse_code = ".... . .-.. .--.   -- .   --- ..- -   --- ..-.   - .... .. ...   .-- . .-.. .-.."
+		assert_equal "HELP ME OUT OF THIS WELL", morse_code.decode_morse
+	end
+
 end

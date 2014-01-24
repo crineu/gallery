@@ -60,4 +60,20 @@ class String
 		Base64.decode64(self)
 	end
 
+	@@morse = Hash[*%w/
+		.- A	-... B	-.-. C
+		-.. D	. E		..-. F
+		--. G	.... H	.. I
+		.--- J  -.- K	.-.. L
+		-- M    -. N    --- O
+		.--. P	--.- Q	.-. R
+		... S	- T		..- U
+		...- V	.-- W	-..- X
+		-.-- Y	--.. Z
+	/]
+	def decode_morse
+		self.split('   ').map{ |word| word.split.map{ |l| @@morse[l] }.join }.join(' ')
+	end
+
+
 end
