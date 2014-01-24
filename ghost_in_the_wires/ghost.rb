@@ -1,3 +1,5 @@
+require 'base64'
+
 FLOOR = 97 	# a byte_code = 97
 ROOF  = 122	# z byte_code = 122
 
@@ -46,11 +48,16 @@ class String
 		byte
 	end
 
-	def decode_hex
-		self.split.map { |code| code.hex.chr }.join
+	def decode_decimal base=10
+		self.split.map { |code| code.to_i(base).chr }.join
 	end
 
-	def decode_decimal
-		self.split.map { |code| code.to_i.chr }.join
+	def decode_octal; decode_decimal(8) end
+	def decode_hex; decode_decimal(16) end
+	def decode_base36; decode_decimal(36) end
+	
+	def decode_base64
+		Base64.decode64(self)
 	end
+
 end

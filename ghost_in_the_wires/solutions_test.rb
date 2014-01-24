@@ -159,6 +159,50 @@ class SolutionsTest < Test::Unit::TestCase
 		# assert_equal " ", ANSWERS[28]
 	end
 
+	def test_riddle_29
+		assert_equal RIDDLES[29], CODES[29].decode_octal.rot(25)
+		assert_equal "snowbird", ANSWERS[29]
+	end
+
+	def test_riddle_30
+		assert_equal RIDDLES[30], CODES[30].vigenere(ANSWERS[29])
+		# assert_equal " ", ANSWERS[30]
+	end
+
+	def test_riddle_31
+		assert_equal RIDDLES[31], CODES[31].rot(4)
+		assert_equal "gtetelenet", ANSWERS[31]
+	end
+
+	def test_riddle_32
+		assert_equal RIDDLES[32], CODES[32].vigenere(ANSWERS[31])
+		# assert_equal "", ANSWERS[32]
+	end
+
+	def test_riddle_33
+		assert_equal RIDDLES[33], CODES[33].rot(18)
+		assert_equal "robertmorris", ANSWERS[33]		
+	end
+
+	def test_riddle_34
+		assert_equal RIDDLES[34], CODES[34].vigenere(ANSWERS[33])
+		# assert_equal "", ANSWERS[34]
+	end
+
+	def test_riddle_35
+		assert_equal RIDDLES[35], CODES[35].decode_base36.rot(6)
+		assert_equal "playersclub", ANSWERS[35]
+	end
+
+	def test_riddle_36
+		assert_equal RIDDLES[36], CODES[36].vigenere(ANSWERS[35])
+		# assert_equal "", ANSWERS[36]
+	end
+
+	def test_riddle_37
+		assert_equal RIDDLES[37], CODES[37].decode_base64
+		# assert_equal "robertmorris", ANSWERS[37]		
+	end
 
 	def _test_print_them_all
 		ANSWERS.each_index do |i|
