@@ -73,11 +73,12 @@ class String
 		.--. P	--.- Q	.-. R
 		... S	- T		..- U
 		...- V	.-- W	-..- X
-		-.-- Y	--.. Z
+		-.-- Y	--.. Z	..--.. ?
 	/]
 
 	def morse_decode
-		self.split('   ').map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }.join(' ')
+		code = self.gsub(" ", "   ").gsub("-", " ").gsub("0", "-").gsub("1", ".")
+		code.split('   ').map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }.join(' ')
 	end
 
 	alias_method :rot, :rot_decode

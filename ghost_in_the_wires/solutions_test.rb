@@ -202,10 +202,10 @@ class SolutionsTest < Test::Unit::TestCase
 		assert_equal "Kathleen Carson", ANSWERS[37]		
 	end
 
-
-# 1 commit para adicionar o readme.md
-# 1 commit para adicionar espa'cos nas respostas
-# 1 commit pra fechar essa encrenca
+	def test_riddle_38
+		assert_equal RIDDLES[38], CODES[38].morse
+		assert_equal "FREE KEVIN", ANSWERS[38]
+	end
 
 	def _test_print_them_all
 		ANSWERS.each_index do |i|
