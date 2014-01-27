@@ -39,7 +39,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_5
 		assert_equal RIDDLES[5], CODES[5].rot(5)
-		assert_equal "oroville", ANSWERS[5]
+		assert_equal "Oroville", ANSWERS[5]
 	end
 
 	def test_riddle_6
@@ -52,10 +52,8 @@ class SolutionsTest < Test::Unit::TestCase
 		assert_equal "Bill Cook", ANSWERS[7]
 	end
 
-	def test_riddle_8 # something odd with this one
-		# assert_equal RIDDLES[8], CODES[8].vigenere(ANSWERS[7])
-		fuzzy_question = "now mjuh ifahy ujv hrldb fzf ar zph frvfsa qil hhs tao zjtijyiv qvi wqeo adre?"
-		assert_equal fuzzy_question, CODES[8].vigenere(ANSWERS[7])
+	def test_riddle_8
+		assert_equal RIDDLES[8], CODES[8].vigenere(ANSWERS[7])
 		assert_equal "150$", ANSWERS[8]
 	end
 
@@ -71,7 +69,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_11
 		assert_equal RIDDLES[11], CODES[11].rot(15)
-		assert_equal "calabasas", ANSWERS[11]
+		assert_equal "Calabasas", ANSWERS[11]
 	end
 
 	def test_riddle_12
@@ -91,7 +89,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_15
 		assert_equal RIDDLES[15], CODES[15].rot(12)
-		assert_equal "optoelectronics", ANSWERS[15]
+		assert_equal "Optoelectronics", ANSWERS[15]
 	end
 
 	def test_riddle_16
@@ -101,7 +99,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_17
 		assert_equal RIDDLES[17], CODES[17].rot(8)
-		assert_equal "oakwood", ANSWERS[17]
+		assert_equal "Oakwood", ANSWERS[17]
 	end
 
 	def test_riddle_18
@@ -116,7 +114,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_20
 		assert_equal RIDDLES[20], CODES[20].vigenere(ANSWERS[19])
-		assert_equal "bob burns", ANSWERS[20]
+		assert_equal "Bob Burns", ANSWERS[20]
 	end
 
 	def test_riddle_21
@@ -151,7 +149,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddel_27
 		assert_equal RIDDLES[27], CODES[27].decode_decimal.rot(24)
-		assert_equal "tatteredcover", ANSWERS[27]
+		assert_equal "Tattered Cover", ANSWERS[27]
 	end
 
 	def test_riddle_28
@@ -171,7 +169,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_31
 		assert_equal RIDDLES[31], CODES[31].rot(4)
-		assert_equal "gtetelenet", ANSWERS[31]
+		assert_equal "GTE Telenet", ANSWERS[31]
 	end
 
 	def test_riddle_32
@@ -181,7 +179,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_33
 		assert_equal RIDDLES[33], CODES[33].rot(18)
-		assert_equal "robertmorris", ANSWERS[33]		
+		assert_equal "Robert Morris", ANSWERS[33]
 	end
 
 	def test_riddle_34
@@ -201,7 +199,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_37
 		assert_equal RIDDLES[37], CODES[37].decode_base64
-		# assert_equal "robertmorris", ANSWERS[37]		
+		# assert_equal "", ANSWERS[37]
 	end
 
 	def _test_print_them_all

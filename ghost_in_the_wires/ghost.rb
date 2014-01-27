@@ -4,63 +4,67 @@ FLOOR = 97 	# a byte_code = 97
 ROOF  = 122	# z byte_code = 122
 
 class String
-	def letter? byte
-		(FLOOR..ROOF).include? byte
+	def is_a_letter? byte_code
+		(FLOOR..ROOF).include? byte_code
 	end
 
-	def rot_encode gap
-		bytes = self.downcase.each_byte.map { |byte| cycle(gap, byte) }
+	def rotate byte_code, distance
+		if is_a_letter? byte_code
+			distance = (distance + 26) % 26
+			byte_code += distance
+			byte_code = (byte_code % 123) + 97 if byte_code > ROOF
+		end
+		byte_code
+	end
+
+	# ROT algorithm
+	def rot_encode distance
+		bytes = self.downcase.each_byte.map { |byte_code| rotate(byte_code, distance) }
 		bytes.map { |b| b.chr }.join
 	end
 
-	def rot gap
-		rot_encode -gap
+	def rot_decode distance
+		rot_encode -distance
 	end
 
 	def print_all_rot
 		(0..25).each { |n| puts n.to_s + ' - ' +  self.rot(n) }
 	end
 
+	# Vigenere algorithm
 	def vigenere_encode key
-		key_iterator = key.chars.cycle
-		bytes = self.downcase.each_byte.map do |byte|
-			gap = (key_iterator.next.ord - FLOOR) if letter? byte
-			cycle(gap, byte)
+		key_iterator = key.delete(' ').downcase.chars.cycle
+		bytes = self.downcase.each_byte.map do |byte_code|
+			distance = (key_iterator.next.ord - FLOOR) if is_a_letter? byte_code
+			rotate(byte_code, distance)
 		end
 		bytes.map { |b| b.chr }.join
 	end
 
-	def vigenere key
-		key_iterator = key.chars.cycle
-		bytes = self.downcase.each_byte.map do |byte|
-			gap = -(key_iterator.next.ord - FLOOR) if letter? byte
-			cycle(gap, byte)
+	def vigenere_decode key
+		key_iterator = key.delete(' ').downcase.chars.cycle
+		bytes = self.downcase.each_byte.map do |byte_code|
+			distance = -(key_iterator.next.ord - FLOOR) if is_a_letter? byte_code
+			rotate(byte_code, distance)
 		end
 		bytes.map { |b| b.chr }.join
 	end
 
-	def cycle gap, byte
-		if letter? byte
-			gap = (gap + 26) % 26
-			byte += gap
-			byte = (byte % 123) + 97 if byte > ROOF
-		end
-		byte
-	end
-
+	# Simple letter/symbol decoding
 	def decode_decimal base=10
 		self.split.map { |code| code.to_i(base).chr }.join
 	end
 
-	def decode_octal; decode_decimal(8) end
-	def decode_hex; decode_decimal(16) end
+	def decode_octal;  decode_decimal(8) end
+	def decode_hex;    decode_decimal(16) end
 	def decode_base36; decode_decimal(36) end
 	
 	def decode_base64
 		Base64.decode64(self)
 	end
 
-	@@morse = Hash[*%w/
+	# MORSE decoder
+	@@morse_table = Hash[*%w/
 		.- A	-... B	-.-. C
 		-.. D	. E		..-. F
 		--. G	.... H	.. I
@@ -71,9 +75,12 @@ class String
 		...- V	.-- W	-..- X
 		-.-- Y	--.. Z
 	/]
-	def decode_morse
-		self.split('   ').map{ |word| word.split.map{ |l| @@morse[l] }.join }.join(' ')
+
+	def morse_decode
+		self.split('   ').map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }.join(' ')
 	end
 
-
+	alias_method :rot, :rot_decode
+	alias_method :vigenere, :vigenere_decode
+	alias_method :morse, :morse_decode
 end
