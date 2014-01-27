@@ -44,7 +44,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_6
 		assert_equal RIDDLES[6], CODES[6].vigenere(ANSWERS[5])
-		assert_equal "hearts", ANSWERS[6]
+		assert_equal "Hearts", ANSWERS[6]
 	end
 
 	def test_riddle_7
@@ -79,7 +79,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_13
 		assert_equal RIDDLES[13], CODES[13].rot(3)
-		assert_equal "teltec", ANSWERS[13]
+		assert_equal "Teltec", ANSWERS[13]
 	end
 
 	def test_riddle_14
@@ -104,12 +104,12 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_18
 		assert_equal RIDDLES[18], CODES[18].vigenere(ANSWERS[17])
-		assert_equal "wcc3", ANSWERS[18]
+		assert_equal "WCC3", ANSWERS[18]
 	end
 
 	def test_riddle_19
 		assert_equal RIDDLES[19], CODES[19].rot(21)
-		assert_equal "alphadent", ANSWERS[19]
+		assert_equal "Alphadent", ANSWERS[19]
 	end
 
 	def test_riddle_20
@@ -119,27 +119,27 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_21
 		assert_equal RIDDLES[21], CODES[21].decode_hex.rot(13)
-		assert_equal "klingon", ANSWERS[21]
+		assert_equal "Klingon", ANSWERS[21]
 	end
 
 	def test_riddle_22
 		assert_equal RIDDLES[22], CODES[22].vigenere(ANSWERS[21])
-		assert_equal "kat", ANSWERS[22]
+		assert_equal "Kat", ANSWERS[22]
 	end
 
 	def test_riddle_23
 		assert_equal RIDDLES[23], CODES[23].rot(9)
-		assert_equal "boombox", ANSWERS[23]
+		assert_equal "boom box", ANSWERS[23]
 	end
 
 	def test_riddle_24
 		assert_equal RIDDLES[24], CODES[24].vigenere(ANSWERS[23])
-		assert_equal "kinko", ANSWERS[24]
+		assert_equal "Kinko", ANSWERS[24]
 	end
 
 	def test_riddle_25
 		assert_equal RIDDLES[25], CODES[25].rot(6)
-		assert_equal "ensburgell", ANSWERS[25]
+		assert_equal "Ellensburg", ANSWERS[25]
 	end
 
 	def test_riddle_26
@@ -154,7 +154,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_28
 		assert_equal RIDDLES[28], CODES[28].vigenere(ANSWERS[27])
-		# assert_equal " ", ANSWERS[28]
+		assert_equal "doc2", ANSWERS[28]
 	end
 
 	def test_riddle_29
@@ -164,7 +164,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_30
 		assert_equal RIDDLES[30], CODES[30].vigenere(ANSWERS[29])
-		# assert_equal " ", ANSWERS[30]
+		assert_equal "cylinder lock", ANSWERS[30]
 	end
 
 	def test_riddle_31
@@ -174,7 +174,7 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_32
 		assert_equal RIDDLES[32], CODES[32].vigenere(ANSWERS[31])
-		# assert_equal "", ANSWERS[32]
+		assert_equal "m00n$@earth", ANSWERS[32]
 	end
 
 	def test_riddle_33
@@ -184,23 +184,28 @@ class SolutionsTest < Test::Unit::TestCase
 
 	def test_riddle_34
 		assert_equal RIDDLES[34], CODES[34].vigenere(ANSWERS[33])
-		# assert_equal "", ANSWERS[34]
+		assert_equal "Direct link", ANSWERS[34]
 	end
 
 	def test_riddle_35
 		assert_equal RIDDLES[35], CODES[35].decode_base36.rot(6)
-		assert_equal "playersclub", ANSWERS[35]
+		assert_equal "Players Club", ANSWERS[35]
 	end
 
 	def test_riddle_36
 		assert_equal RIDDLES[36], CODES[36].vigenere(ANSWERS[35])
-		# assert_equal "", ANSWERS[36]
+		assert_equal "Glasgow", ANSWERS[36]
 	end
 
 	def test_riddle_37
 		assert_equal RIDDLES[37], CODES[37].decode_base64
-		# assert_equal "", ANSWERS[37]
+		assert_equal "Kathleen Carson", ANSWERS[37]		
 	end
+
+
+# 1 commit para adicionar o readme.md
+# 1 commit para adicionar espa'cos nas respostas
+# 1 commit pra fechar essa encrenca
 
 	def _test_print_them_all
 		ANSWERS.each_index do |i|
