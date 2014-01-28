@@ -76,9 +76,12 @@ class String
 		-.-- Y	--.. Z	..--.. ?
 	/]
 
+	def morse_normalize
+		self.gsub(" ", "   ").gsub("-", " ").gsub("0", "-").gsub("1", ".")
+	end
+
 	def morse_decode
-		code = self.gsub(" ", "   ").gsub("-", " ").gsub("0", "-").gsub("1", ".")
-		code.split('   ').map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }.join(' ')
+		self.split('   ').map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }.join(' ')
 	end
 
 	alias_method :rot, :rot_decode

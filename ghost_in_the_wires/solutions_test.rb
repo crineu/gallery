@@ -203,7 +203,7 @@ class SolutionsTest < Test::Unit::TestCase
 	end
 
 	def test_riddle_38
-		assert_equal RIDDLES[38], CODES[38].morse
+		assert_equal RIDDLES[38], CODES[38].morse_normalize.morse
 		assert_equal "FREE KEVIN", ANSWERS[38]
 	end
 
