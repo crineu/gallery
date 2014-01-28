@@ -207,7 +207,7 @@ class SolutionsTest < Test::Unit::TestCase
 		assert_equal "FREE KEVIN", ANSWERS[38]
 	end
 
-	def _test_print_them_all
+	def test_print_them_all
 		ANSWERS.each_index do |i|
 			puts CODES[i]
 			puts RIDDLES[i]

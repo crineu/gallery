@@ -20,7 +20,7 @@ class String
 	# ROT algorithm
 	def rot_encode distance
 		bytes = self.downcase.each_byte.map { |byte_code| rotate(byte_code, distance) }
-		bytes.map { |b| b.chr }.join
+		bytes.map { |byte| byte.chr }.join
 	end
 
 	def rot_decode distance
@@ -33,22 +33,25 @@ class String
 
 	# Vigenere algorithm
 	def vigenere_encode key
-		key_iterator = key.delete(' ').downcase.chars.cycle
-		bytes = self.downcase.each_byte.map do |byte_code|
-			distance = (key_iterator.next.ord - FLOOR) if is_a_letter? byte_code
-			rotate(byte_code, distance)
+		key_iterator = key.delete(' ').downcase.bytes.cycle
+		code = String.new
+		self.downcase.each_byte do |byte_code|
+			distance = (key_iterator.next - FLOOR) if is_a_letter? byte_code
+			code << rotate(byte_code, distance).chr
 		end
-		bytes.map { |b| b.chr }.join
+		code
 	end
 
 	def vigenere_decode key
-		key_iterator = key.delete(' ').downcase.chars.cycle
-		bytes = self.downcase.each_byte.map do |byte_code|
-			distance = -(key_iterator.next.ord - FLOOR) if is_a_letter? byte_code
-			rotate(byte_code, distance)
+		key_iterator = key.delete(' ').downcase.bytes.cycle
+		code = String.new
+		self.downcase.each_byte do |byte_code|
+			distance = -(key_iterator.next - FLOOR) if is_a_letter? byte_code
+			code << rotate(byte_code, distance).chr
 		end
-		bytes.map { |b| b.chr }.join
+		code
 	end
+
 
 	# Simple letter/symbol decoding
 	def decode_decimal base=10
