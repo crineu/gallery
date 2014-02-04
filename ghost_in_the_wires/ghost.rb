@@ -20,7 +20,8 @@ class String
 	# ROT algorithm
 	def rot_encode distance
 		bytes = self.downcase.each_byte.map { |byte_code| rotate(byte_code, distance) }
-		bytes.map { |byte| byte.chr }.join
+		# bytes.map { |byte| byte.chr }.join
+		bytes.map(&:chr).join
 	end
 
 	def rot_decode distance
@@ -62,9 +63,7 @@ class String
 	def decode_hex;    decode_decimal(16) end
 	def decode_base36; decode_decimal(36) end
 	
-	def decode_base64
-		Base64.decode64(self)
-	end
+	def decode_base64; Base64.decode64(self) end
 
 	# MORSE decoder
 	@@morse_table = Hash[*%w/
@@ -84,7 +83,9 @@ class String
 	end
 
 	def morse_decode
-		self.split('   ').map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }.join(' ')
+		morse_words = self.split('   ')
+		normal_words = morse_words.map{ |word| word.split.map{ |letter| @@morse_table[letter] }.join }
+		normal_words.join(' ')
 	end
 
 	alias_method :rot, :rot_decode
