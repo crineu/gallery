@@ -1,8 +1,7 @@
-require 'test/unit'
-
+require 'minitest/autorun'
 require File.dirname(__FILE__) + '/ghost.rb'
 
-class GhostTest < Test::Unit::TestCase
+class GhostTest < Minitest::Test
 
 	def test_rot_encode
 		assert_equal "cdef", "abcd".rot_encode(2)

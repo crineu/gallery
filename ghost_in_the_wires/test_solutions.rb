@@ -1,21 +1,22 @@
-require 'test/unit'
+require 'minitest/autorun'
 require File.dirname(__FILE__) + '/ghost.rb'
 
-CODES = []
-File.readlines('chapter_codes').each do |line|
-	chapter, code = line.split("\t")
-	CODES[chapter.to_i] = code.chomp
-end
-RIDDLES = []
-ANSWERS = []
-File.readlines('chapter_answers').each do |line|
-	chapter, riddle, answer = line.split("\t")
-	RIDDLES[chapter.to_i] = riddle.chomp unless riddle.nil?
-	ANSWERS[chapter.to_i] = answer.chomp unless answer.nil?
+def file_to_array(file_name)
+	array = []
+	File.readlines(file_name).each do |line|
+		chapter, text = line.split("\t")
+		array[chapter.to_i] = text.chomp unless text.nil?
+	end
+	array
 end
 
+# test setup
+CODES   = file_to_array('chapter_codes')
+RIDDLES = file_to_array('chapter_riddles')
+ANSWERS = file_to_array('chapter_answers')
 
-class SolutionsTest < Test::Unit::TestCase
+
+class SolutionsTest < Minitest::Test
 
 	def test_riddle_1
 		assert_equal RIDDLES[1], CODES[1].rot(2)
@@ -207,7 +208,7 @@ class SolutionsTest < Test::Unit::TestCase
 		assert_equal "FREE KEVIN", ANSWERS[38]
 	end
 
-	def test_print_them_all
+	def debug_test_print_them_all
 		ANSWERS.each_index do |i|
 			puts CODES[i]
 			puts RIDDLES[i]
