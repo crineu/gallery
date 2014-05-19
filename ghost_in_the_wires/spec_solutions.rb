@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require File.dirname(__FILE__) + '/ghost.rb'
 
 
-def file_to_array(file_name)
+def file_to_array(file_name)\
 	array = []
 	File.readlines(file_name).each do |line|
 		chapter, text = line.split("\t")
@@ -11,13 +11,13 @@ def file_to_array(file_name)
 	array
 end
 
-# test setup
-CODES   = file_to_array('chapter_codes')
-RIDDLES = file_to_array('chapter_riddles')
-ANSWERS = file_to_array('chapter_answers')
-
-
 describe "Tests for all chapters solutions" do
+
+	before do 
+		CODES   ||= file_to_array('chapter_codes')
+		RIDDLES ||= file_to_array('chapter_riddles')
+		ANSWERS ||= file_to_array('chapter_answers')		
+	end
 	
 	describe "most of the odd chapters use ROT" do
 		it "chapter 1 is decyphered with index 2" do
@@ -65,8 +65,8 @@ describe "Tests for all chapters solutions" do
 	end
 
 	describe "all even chapters use vigenere" do
-		it "using previous chapters answer as key" do
-			2.step(37, 2).each do |chapter|
+		2.step(37, 2).each do |chapter|
+			it "uses previous chapters answers as key" do
 				previos_chapter_answer = ANSWERS[chapter - 1]
 				CODES[chapter].vigenere(previos_chapter_answer).must_equal RIDDLES[chapter]
 			end
