@@ -3,10 +3,12 @@
 
 class Dictionary
     def initialize
-        @words = []
-        File.readlines("english_words.txt").each do |word|
-            @words << word.chomp.downcase
+        @words = Hash.new { |hash, key| hash[key] = [] }
+        File.readlines("english_words.txt").each do |raw_word|
+            word = raw_word.chomp.downcase
+            word.each_char { |chr| @words[chr] << word }
         end
+        @words.values.each { |value| value.uniq!  }
     end
 
     def all_words
@@ -15,7 +17,7 @@ class Dictionary
 
     def words(letter, position = 0)
         result = []
-        @words.each do |word|
+        @words[letter].each do |word|
             next if word[position].nil?
             result << word if word[position] == letter
         end
@@ -63,8 +65,9 @@ end
 
 
 dict = Dictionary.new
+# p dict.all_words.size
 # p dict.words("k").size
-# p dict.words("k", 2)
+# puts dict.words("x", 8)
 
 # dict.print_letter_histogram("z")
 # p dict.letter_histogram("z")
