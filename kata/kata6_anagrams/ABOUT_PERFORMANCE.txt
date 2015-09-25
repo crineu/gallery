@@ -1,0 +1,37 @@
+Performance improved after changing the type of the keys used in the hash.
+
+Using arrays of strings as keys	=> 447.983108 seconds
+Using large fixnums as keys		=> 126.073585 seconds
+
+** ARRAYS OF STRINGS **
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+ 21.32    87.17     87.17  1473262     0.06     0.13  Array#eql?
+ 19.25   165.88     78.71  2480974     0.03     0.04  Numeric#eql?
+ 15.86   230.71     64.83   280682     0.23     0.38  Array#hash
+ 10.08   271.92     41.21  2657000     0.02     0.02  Kernel.hash
+  8.08   304.96     33.04   189012     0.17     1.88  Hash#[]
+  6.76   332.60     27.64       68   406.47 18027.94  Array#each
+  5.94   356.87     24.27  1462751     0.02     0.02  Fixnum#==
+  4.42   374.94     18.07    91784     0.20     1.28  Hash#[]=
+  1.65   381.67      6.73    97242     0.07     3.00  Enumerable::Enumerator#each
+  1.30   386.99      5.32    91720     0.06     1.34  Proc#call
+  1.07   391.37      4.38    97242     0.05     3.04  Enumerable.map
+  1.05   395.66      4.29   194482     0.02     0.02  String#each_byte
+  0.83   399.06      3.40    91728     0.04     1.38  Hash#default
+  0.49   401.07      2.01    97242     0.02     0.02  Array#sort
+
+** LARGE NUMBERS ** 
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+ 27.30    31.25     31.25       68   459.56  5042.06  Array#each
+ 17.67    51.48     20.23    97241     0.21     0.33  Array#to_s
+ 10.69    63.72     12.24   910954     0.01     0.01  Fixnum#to_s
+  7.65    72.48      8.76   189012     0.05     0.13  Hash#[]
+  5.05    78.26      5.78    97242     0.06     1.10  Enumerable::Enumerator#each
+  4.47    83.38      5.12    91720     0.06     0.11  Proc#call
+  4.41    88.43      5.05   194482     0.03     0.03  String#each_byte
+  4.41    93.48      5.05    97242     0.05     1.15  Enumerable.map
+  3.88    97.92      4.44   278211     0.02     0.02  Bignum#hash
+  2.92   101.26      3.34    91784     0.04     0.05  Hash#[]=
+  2.70   104.35      3.09    91728     0.03     0.14  Hash#default
