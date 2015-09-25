@@ -1,31 +1,33 @@
-def fat(x)
-    fffffat = 1
-    while (x > 1)
-        fffffat *= x
-        x = x -1
+# Benchmark de diferentes métodos de implementação de fatorial
+require 'benchmark'
+
+# Common way of doing fatorial with while
+def fatorial_while(num)
+    result = 1
+    while (num > 1)
+        result *= num
+        num = num -1
     end
-    fffffat
+    result
 end
 
-def fat2(x)
-    return x == 1 ? 1 : x*fat(x-1)
+# Recursive fatorial implementation
+def fatorial_recursivo(num)
+    return num == 1 ? 1 : num * fatorial_recursivo(num-1)
 end
 
-def fat3(n)
-    (2..n).inject { |r, n| r *= n }
+# Fatorial with ruby inject method
+def fatorial_inject(num)
+    (2..num).inject { |x, num| x *= num }
 end
 
-def now
-    time = Time.now
-    "#{time.hour}:#{time.min}:#{time.sec}"
+
+numero = 8100
+
+REPETICOES = 98
+LARGURA_COLUNA = 16
+Benchmark.bm(LARGURA_COLUNA) do |x|
+  x.report("Using while")       { REPETICOES.times { fatorial_while(numero) } }
+  x.report("Using recursion")   { REPETICOES.times { fatorial_recursivo(numero) } }
+  x.report("Using inject")      { REPETICOES.times { fatorial_inject(numero)} }
 end
-
-numma = 98777
-
-puts now
-fat(numma)
-puts now
-fat2(numma)
-puts now
-fat3(numma)
-puts now
