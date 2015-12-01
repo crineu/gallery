@@ -1,4 +1,6 @@
-
+#
+# Lazy definition
+#
 class LazyClass
 
   def hello
@@ -15,3 +17,4 @@ end
 
 l = LazyClass.new
 5.times { puts l.hello }
+
