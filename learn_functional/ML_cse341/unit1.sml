@@ -29,3 +29,25 @@ fun sort_pair (pr : int*int) =
 val b = swap((3, true))
 val sp = sum_two_pairs((3,4),(8,4))
 val dm = div_mod(89,17)
+
+(* Lists *)
+fun sum_list (xs: int list) =
+    if null xs
+    then 0
+    else hd(xs) + sum_list(tl xs)
+
+val sum = sum_list ([4, 1, 2, 3])
+
+fun append (xs : int list, ys : int list) =
+    if null xs
+    then ys
+    else (hd xs) :: append(tl xs, ys)
+
+val penca = append([1, 2, 3], [10, 11, 12])
+
+fun firsts (xs : (int * int) list) =
+    if null xs
+    then []
+    else (#1 (hd xs))::(firsts(tl xs))
+
+val bozo = firsts([(1,2), (3,4)])
