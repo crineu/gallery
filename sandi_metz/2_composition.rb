@@ -53,7 +53,7 @@ class EchoFormatter
   def format(parts) parts.zip(parts).flatten; end
 end
 
-h = House.new(orderer: RandomOrder.new, formatter: EchoFormatter.new)
-
-puts h.line 1
-puts h.line 6
+puts House.new().line 6
+puts House.new(orderer: RandomOrder.new).line 4
+puts House.new(formatter: EchoFormatter.new).line 4
+puts House.new(orderer: RandomOrder.new, formatter: EchoFormatter.new).line 8
