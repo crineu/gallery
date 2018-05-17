@@ -1,0 +1,48 @@
+<head>
+    <style>
+        span.bloco {
+            padding: 16px 10px;
+            margin: 40px 20px;
+            display: block;
+            width: 120px;
+            height: 80px;
+            font-size: 22px sans-serif;
+            background-color: steelblue;
+
+            border-radius: 10px;
+
+            -webkit-transition: background-color 0.5s, color 0.5s;
+            -o-transition: background-color 0.5s, color 0.5s;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        span.bloco.cor:hover {
+            color: #E3E9E5;
+            background-color: darkred;
+        }
+
+        span.texto {
+            -webkit-transition: left, 0.5s;
+            -o-transition: left, 0.5s;
+            transition: left, 0.5s;
+        }
+
+        span.bloco.texto {
+            position: relative;
+            overflow: hidden;
+        }
+        span.texto.cima, span.texto.baixo { position: absolute; }
+        span.texto.cima { left: 10px; }
+        span.texto.baixo { left: 220px;}
+
+        span.texto:hover .cima { left: -220px; }
+        span.texto:hover .baixo { left: 10px;}
+
+    </style>
+</head>
+
+<span class="bloco cor"> botao teste transition color </span>
+
+<span class="bloco texto">
+    <span class="texto cima"> botao teste com duas</span>
+    <span class="texto baixo"> linhas de texto que rodam</span>
+</span>

@@ -10,12 +10,13 @@ Some code snippets here and there.
 * `shuffle` The danger of naive shuffling
 * `imdb_top250` Top 250 movies grouped by release year
 * `kata` This one I think it's good
-
-Recently incorporated:
-
 * `google_code_jam` Some examples from this competition (?)
 * `therubygame.com` [The Ruby Game]
 * `usefull` Stuff more old than usefull
 * `learn_funcional` Haskell and ML hello world
+* `suffle` The perils of naive shuffling
+* `sandi_metz` 99botles problem solved in different ways
 
-[The Ruby Game]:http://www.therubygame.com
+* `usefull` non-related (un)usefull stuff
+
+
