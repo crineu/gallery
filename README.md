@@ -18,5 +18,5 @@ Some code snippets here and there.
 * `sandi_metz` 99botles problem solved in different ways
 
 * `usefull` non-related (un)usefull stuff
-
+* `elixir` Learning Elixir!
 
