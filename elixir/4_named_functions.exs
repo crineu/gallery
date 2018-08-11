@@ -44,7 +44,7 @@ Example.func("primeiro", "segundo", "terceiro", "quarto")
 
 # I'm thinking of a number between 1 and 1000
 defmodule Chop do
-  def guess(secret, a..b) do  
+  def guess(secret, a..b) do
     check(secret, div(a+b, 2), a..b)
   end
 
@@ -74,10 +74,10 @@ IO.inspect 1..10
 
 # Atributos de Modulos
 defmodule ExampleAttribute do
-  @author "Constante setada sem o = que funciona como uma macro"
+  @author "Constante setada sem = que funciona como uma macro"
   def get_author do
     @author
-  end  
+  end
 end
 
 IO.puts ExampleAttribute.get_author

@@ -42,6 +42,7 @@ IO.puts Regex.replace ~r{[aeiou]}, "caterpillar", "&"
 # BINARIES
 bin = << 1, 2>>
 IO.puts "<<1, 2>> byte_size #{byte_size bin}"
+IO.puts "<<1, 2>> bit_size #{bit_size bin}"
 bin = <<3 :: size(2), 5 :: size(4), 1 :: size(2) >>
 IO.puts :io.format("~-8.2b~n", :binary.bin_to_list(bin))
 IO.puts "<<3 :: size(2), 5 :: size(4), 1 :: size(2) >> = #{byte_size bin}"
