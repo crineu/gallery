@@ -183,7 +183,7 @@ defmodule CSV do
     list_keys = head |> String.split(",") |> Enum.map(&String.to_atom/1)
     data
       |> Enum.map(&String.split(&1, ","))
-      |> Enum.map(&_parse_line(&1))
+      |> Enum.map(&_parse_line/1)
       |> Enum.map(&Enum.zip(list_keys, &1))
   end
 
