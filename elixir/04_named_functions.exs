@@ -90,7 +90,7 @@ IO.puts :erlang.float_to_binary(127.89334, decimals: 2)
 IO.puts :erlang.float_to_binary(10/3, decimals: 3)
 
 # 2) print value of OS env variable [Elixir]
-IO.inspect System.get_env          # all
+# IO.inspect System.get_env          # all
 IO.inspect System.get_env("PWD")
 
 # 3) Return the extension of a file name ('.exs' for '4_named_functions.exs') [Elixir]

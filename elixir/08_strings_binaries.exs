@@ -196,5 +196,5 @@ defmodule CSV do
   end
 end
 
-IO.inspect orders = CSV.to_key_list "8.1_sales.csv"
+IO.inspect orders = CSV.to_key_list "sales.csv"
 IO.inspect Tax.fix_table(orders, tax_rates)

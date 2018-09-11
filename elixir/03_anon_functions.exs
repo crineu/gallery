@@ -1,5 +1,5 @@
 double = fn(n) -> n * 2 end
-IO.puts double.(83)
+IO.puts double.(76)
 
 greet = fn -> IO.puts "Hello" end
 greet.()
@@ -28,10 +28,10 @@ IO.puts handle_opener.(File.open("non.ecxiste"))
 
 
 func3 = fn
-  0, 0, c -> "FizzBuzz"
-  0, b, c -> "Fizz"
-  a, 0, c -> "Buzz"
-  a, b, c -> c
+   0,  0, _c -> "FizzBuzz"
+   0, _b, _c -> "Fizz"
+  _a,  0, _c -> "Buzz"
+  _a, _b,  c -> c
 end
 fizzBuzz = fn(n) -> func3.(rem(n,3), rem(n,5), n) end
 
@@ -43,6 +43,8 @@ IO.puts fizzBuzz.(14)
 IO.puts fizzBuzz.(15)
 IO.puts fizzBuzz.(16)
 
+
+IO.puts "\n\tFUNCTIONS"
 
 # Function returns function
 prefix = fn

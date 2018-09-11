@@ -30,12 +30,12 @@ defmodule Inject do
   def sum2([first | [second | tail]]), do: sum2([first + second | tail])
 end
 
-IO.puts Inject.sum [8,8,8,9]
-# IO.puts Inject.sum2 [8,8,8,9]
-IO.puts Inject.sum2 []
-IO.puts Inject.sum2 [3]
-IO.puts Inject.sum2 [3, 7, 8]
-IO.puts Inject.sum2 [1, 2, 3, 5, 6, 7]
+IO.puts "Inject.sum [8,8,8,9]  =>  #{Inject.sum [8,8,8,9]}"
+IO.puts "Inject.sum2 [8,8,8,9] =>  #{Inject.sum2 [8,8,8,9]}"
+IO.puts "Inject.sum2 []   =>  #{Inject.sum2 []}"
+IO.puts "Inject.sum2 [3]  =>  #{Inject.sum2 [3]}"
+IO.puts "Inject.sum2 [3, 7, 8]  =>  #{Inject.sum2 [3, 7, 8]}"
+IO.puts "Inject.sum2 [1, 2, 3, 5, 6, 7]  =>  #{Inject.sum2 [1, 2, 3, 5, 6, 7]}"
 
 # Reduce implementation
 defmodule Reduce do

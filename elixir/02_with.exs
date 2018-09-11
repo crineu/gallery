@@ -6,7 +6,7 @@ ntp_user = with {:ok, file}   = File.open("passwd.sample"),
                 :ok           = File.close(file),
                 [_, uid, gid] = Regex.run(~r/ntp:.*?:(\d+):(\d+)/, content)
            do
-               "Group #{gid}, User: #{uid}"
+                "Group #{gid}, User: #{uid}"
            end
 
 IO.puts ntp_user
@@ -25,7 +25,7 @@ nil_if_not_found = with {:ok, file}   = File.open("passwd.sample"),
                         :ok           = File.close(file),
                         [_, uid, gid] <- Regex.run(~r/xxxx:.*?:(\d+):(\d+)/, content)
                    do
-                       "Group #{gid}, User: #{uid}"
+                        "Group #{gid}, User: #{uid}"
                    end
 
 IO.puts inspect(nil_if_not_found)

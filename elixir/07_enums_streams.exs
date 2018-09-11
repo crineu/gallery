@@ -97,6 +97,7 @@ IO.inspect Stream.repeatedly(&:random.uniform/0) |> Enum.take(3)
 IO.inspect Stream.iterate(0, &(&1+1)) |> Enum.take(5)
 
 # Fibonacci
+IO.puts "\nFibonacci stream version"
 IO.inspect Stream.unfold({0,1}, fn{a,b} -> {a, {b, a+b}} end) |> Enum.take(11)
 
 

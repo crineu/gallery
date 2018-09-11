@@ -23,7 +23,7 @@ IO.puts :atom   # Atom
 
 # STRINGS
 
-'Jósẽ' == "Jósẽ"  # false!
+IO.puts 'Jósẽ' == "Jósẽ"  # false!
 # List_of_char != BitString
 
 
@@ -33,6 +33,7 @@ IO.puts "calling colors.blue = #{colors.blue}"
 
 
 # REGEX
+IO.puts "\n\tREGEX"
 IO.puts Regex.run     ~r{[aeiou]}, "caterpillar"
 IO.puts Regex.scan    ~r{[aeiou]}, "caterpillar"
 IO.puts Regex.split   ~r{[aeiou]}, "caterpillar"
@@ -40,14 +41,17 @@ IO.puts Regex.replace ~r{[aeiou]}, "caterpillar", "&"
 
 
 # BINARIES
-bin = << 1, 2>>
+IO.puts "\n\tBINARIES"
+bin = <<1, 2>>
 IO.puts "<<1, 2>> byte_size #{byte_size bin}"
 IO.puts "<<1, 2>> bit_size #{bit_size bin}"
 bin = <<3 :: size(2), 5 :: size(4), 1 :: size(2) >>
 IO.puts :io.format("~-8.2b~n", :binary.bin_to_list(bin))
 IO.puts "<<3 :: size(2), 5 :: size(4), 1 :: size(2) >> = #{byte_size bin}"
 
+
 # DATES
+IO.puts "\n\tDATES"
 d1 = Date.new(2016, 12, 25)
 {:ok, d1} = Date.new(2016, 12, 25)
 IO.puts inspect d1, structs: false
@@ -57,16 +61,18 @@ IO.puts inspect t1, structs: false
 
 
 # OPERATORS
+IO.puts "\n\tOPERATORS"
 [a, b] = [1, 1.0]
 
-IO.puts "a === b  eq  #{a === b}    # strict equality"
-IO.puts "a !== b  eq  #{a !== b}     # strict inequality"
-IO.puts "a ==  b  eq  #{a ==  b}     # value equality"
-IO.puts "a !=  b  eq  #{a !=  b}    # value inequality"
-IO.puts "a >  b   eq  #{a >  b}    # normal comparison"
-IO.puts "a >= b   eq  #{a >= b}     # normal comparison"
-IO.puts "a <  b   eq  #{a <  b}    # normal comparison"
-IO.puts "a <= b   eq  #{a <= b}     # normal comparison"
+IO.puts "[a, b] = [1, 1.0]"
+IO.puts "strict equality   #  a === b  eq  #{a === b}    "
+IO.puts "strict inequality #  a !== b  eq  #{a !== b}    "
+IO.puts "value equality    #  a ==  b  eq  #{a ==  b}    "
+IO.puts "value inequality  #  a !=  b  eq  #{a !=  b}    "
+IO.puts "normal comparison #  a >  b   eq  #{a >  b}     "
+IO.puts "normal comparison #  a >= b   eq  #{a >= b}     "
+IO.puts "normal comparison #  a <  b   eq  #{a <  b}     "
+IO.puts "normal comparison #  a <= b   eq  #{a <= b}     "
 
 
 # truthy: any value other than nil and :false are treated as :true
