@@ -3,9 +3,10 @@ defmodule Issues.MixProject do
 
   def project do
     [
-      app: :issues,
+      app:     :issues,
+      escript: escript_config(),
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir:  "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -27,4 +28,9 @@ defmodule Issues.MixProject do
       { :poison,    "~> 3.1" }
     ]
   end
+
+  defp escript_config do
+    [ main_module: Issues.CLI ]
+  end
+
 end
