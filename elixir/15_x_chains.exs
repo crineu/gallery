@@ -27,5 +27,5 @@ defmodule Chain do
 
 end
 
-# elixir --erl "+P 2000000" -r 15_chains.exs -e "Chain.run(1_200_000)"
+#$> elixir --erl "+P 2000000" -r 15_chains.exs -e "Chain.run(1_200_000)"
 # Chain.run(10_000)
