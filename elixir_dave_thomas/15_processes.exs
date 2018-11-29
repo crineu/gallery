@@ -108,6 +108,15 @@ defmodule Parallel do
            receive do {^pid, result} -> result end
          end)
   end
+
+  def pmap2(collection, func) do
+    collection
+      |> Enum.map(&(Task.async(fn -> func.(&1) end)))
+      |> Enum.map(&Task.await/1)
+  end
+
 end
 
+
 IO.inspect Parallel.pmap 1..15, &(&1 * &1)
+IO.inspect Parallel.pmap2 1..15, &(&1 * &1)
