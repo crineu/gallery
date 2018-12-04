@@ -38,7 +38,14 @@ end
 
 
 case System.argv() do
-  ["--test"] ->
+  [file_name] ->
+    file_name
+      |> File.stream!([], :line)
+      |> Day01.repeated_frequency
+      |> IO.puts
+
+  _ ->
+    IO.puts "==> Running tests | for a file input, try `elixir file.exs [input_name]`"
     ExUnit.start(trace: true)
 
     defmodule Day01Test do
@@ -82,13 +89,4 @@ case System.argv() do
       end
     end
 
-  [file_name] ->
-    file_name
-      |> File.stream!([], :line)
-      |> Day01.repeated_frequency
-      |> IO.puts
-
-  _ ->
-    IO.puts :stderr, "we expect --test or a file_name; try `elixir 2018_day_01-2.exs 2018_day_01.input`"
-    System.halt(1)
 end
