@@ -1,43 +1,66 @@
-# 30130 palavras
+# 6026 palavras
 WORDS_PT_BR = "br-sem-acentos-5-letras.txt"
+
+DEBUG = true
 
 class Wordle
 
   def initialize(lingua = WORDS_PT_BR)
-    @dicionario = [
-      Hash.new { |hash, letra| hash[letra] = [] },
-      Hash.new { |hash, letra| hash[letra] = [] },
-      Hash.new { |hash, letra| hash[letra] = [] },
-      Hash.new { |hash, letra| hash[letra] = [] },
-      Hash.new { |hash, letra| hash[letra] = [] }
-    ]
+    @dicionario = Hash.new { |hash, letra| hash[letra] = [] }
 
     File.readlines(lingua).each do |raw_word|
       palavra = raw_word.chomp.downcase
-      letras  = palavra.chars
-      @dicionario[0][letras[0]] << palavra
-      @dicionario[1][letras[1]] << palavra
-      @dicionario[2][letras[2]] << palavra
-      @dicionario[3][letras[3]] << palavra
-      @dicionario[4][letras[4]] << palavra
+      @dicionario[palavra.chars.first] << palavra
     end
+
+    puts "#{possibilidades} possibilidades" if DEBUG
   end
 
   def dict
     @dicionario
   end
 
-  def possibilidades
-    @dicionario.map do |posicao|
-      posicao.values.reduce(0) { |soma, array| soma + array.size}
-    end.reduce(:+)
+  def chute
+    @dicionario.values.shuffle.first.shuffle.first
   end
 
-  def remove_letra(letra_a_remover)
-    @dicionario.each do |posicao|
-      posicao.delete(letra_a_remover)
+  def possibilidades
+    @dicionario.values.reduce(0) { |soma, array| soma + array.size}
+  end
+
+  def tem(letras_que_tem)
+    letras_que_tem.chars.each do |manter_letra|
+      @dicionario.each_pair do |_k, array|
+        array.delete_if { |palavra| not palavra.include?(manter_letra)}
+      end
     end
 
+    puts "#{possibilidades} possibilidades" if DEBUG
+  end
+
+
+  def nao_tem(letras_a_remover)
+    letras_a_remover.chars.each do |letra_a_remover|
+      @dicionario.delete(letra_a_remover)
+      @dicionario.each_pair do |_k, array|
+        array.delete_if { |palavra| palavra.include? letra_a_remover}
+      end
+    end
+
+    puts "#{possibilidades} possibilidades" if DEBUG
+  end
+
+  def fixa_letra(letra_certa, posicao)
+    if (0 == posicao)
+      validos = @dicionario[posicao][letra_certa]
+      @dicionario[posicao] = { letra_certa => validos }
+    else
+      @dicionario.each_pair do |_k, array|
+        array.delete_if { |palavra| letra_certa != palavra.chars[posicao]}
+      end
+    end
+
+    puts "#{possibilidades} possibilidades" if DEBUG
   end
 
   def print_histogram(dicionario)
