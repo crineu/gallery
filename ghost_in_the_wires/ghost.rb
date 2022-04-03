@@ -25,7 +25,7 @@ class String
 	end
 
 	def rot_decode distance
-		rot_encode -distance
+		rot_encode(-distance)
 	end
 
 	def print_all_rot

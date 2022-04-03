@@ -1,21 +1,13 @@
 require 'minitest/autorun'
-require File.dirname(__FILE__) + '/ghost.rb'
-
-def file_to_array(file_name)
-    array = []
-    File.readlines(file_name).each do |line|
-        chapter, text = line.split("\t")
-        array[chapter.to_i] = text.chomp unless text.nil?
-    end
-    array
-end
+require_relative 'helper_file.rb'
+require_relative 'ghost.rb'
 
 class SolutionsTest < Minitest::Test
 
     def setup
-        @@codes   ||= file_to_array('chapter_codes')
-        @@riddles ||= file_to_array('chapter_riddles')
-        @@answers ||= file_to_array('chapter_answers')
+        @@codes   ||= HelperFile.file_to_array('chapter_codes')
+        @@riddles ||= HelperFile.file_to_array('chapter_riddles')
+        @@answers ||= HelperFile.file_to_array('chapter_answers')
     end
 
     def test_riddle_chapter_1
