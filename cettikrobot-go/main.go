@@ -16,10 +16,10 @@ func main() {
 		log.Fatal("Token não encontrado")
 	}
 
-	bot.Debug = true
+	// bot.Debug = true
 
 	updateConfig := tgbotapi.NewUpdate(0)
-	updateConfig.Timeout = 60
+	updateConfig.Timeout = 600
 
 	updates, err := bot.GetUpdatesChan(updateConfig)
 	if err != nil {
@@ -27,21 +27,34 @@ func main() {
 	}
 
 	for update := range updates {
-		if update.Message == nil || update.Message.Text == "" {
+		if update.Message == nil {
 			continue
 		}
 
-		if strings.Contains(update.Message.Text, "https://") || strings.Contains(update.Message.Text, "http://") {
-			link := extractLink(update.Message.Text)
-			location, err := getURLLocation(link)
-			if err != nil {
-				log.Println("Error getting URL location:", err)
-				continue
-			}
-
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, location)
-			bot.Send(msg)
+		if update.Message.Text != "" {
+			handleMessage(bot, update.Message.Text, update.Message.Chat.ID)
 		}
+
+		if update.Message.Caption != "" {
+			handleMessage(bot, update.Message.Caption, update.Message.Chat.ID)
+		}
+	}
+}
+
+func handleMessage(bot *tgbotapi.BotAPI, text string, chatID int64) {
+	if strings.Contains(text, "https://") || strings.Contains(text, "http://") {
+		link := extractLink(text)
+		location, err := getURLLocation(link)
+		returnMsg := "Retorno do BOT"
+		if err != nil {
+			log.Println("Error getting URL location:", err)
+			returnMsg = err.Error()
+		} else {
+			returnMsg = strings.Replace(location, "?", " ", 1)
+		}
+
+		msg := tgbotapi.NewMessage(chatID, returnMsg)
+		bot.Send(msg)
 	}
 }
 
@@ -50,7 +63,7 @@ func extractLink(text string) string {
 	if start == -1 {
 		start = strings.Index(text, "http://")
 	}
-	end := strings.Index(text[start:], " ")
+	end := strings.IndexAny(text[start:], " \n\t")
 	if end == -1 {
 		end = len(text)
 	} else {
