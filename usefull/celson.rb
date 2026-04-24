@@ -1,19 +1,19 @@
 
-_1 = %w{c ç s}
-_2 = %w{e eh- é}
-_3 = %w{l u}
-_4 = %w{s ss ç}
-_5 = %w{o oo oh}
-_6 = %w{n m}
+l_1 = %w{c ç s}
+l_2 = %w{e eh- é}
+l_3 = %w{l u}
+l_4 = %w{s ss ç}
+l_5 = %w{o oo oh}
+l_6 = %w{n m}
 
 todos = []
-_1.each do |a|
-  _2.each do |b|
-    _3.each do |c|
-      _4.each do |d|
-        _5.each do |e|
+l_1.each do |a|
+  l_2.each do |b|
+    l_3.each do |c|
+      l_4.each do |d|
+        l_5.each do |e|
           todos << a + b + c + d + e
-          _6.each do |f|
+          l_6.each do |f|
             todos << a + b + c + d + e + f
           end
         end
